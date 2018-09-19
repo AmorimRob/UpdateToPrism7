@@ -1,4 +1,4 @@
-# UpdatePrims7
+# UpdatePrism7
 
 Este projeto é desenvolvido utilizando Xamarin Forms. Tem por objetivo mostrar a diferença de implmentação das versão 6 e 7 do Prism.
 
