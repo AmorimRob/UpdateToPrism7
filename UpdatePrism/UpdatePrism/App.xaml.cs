@@ -1,5 +1,7 @@
-﻿using Microsoft.Practices.Unity;
+﻿using Prism;
+using Prism.Ioc;
 using Prism.Unity;
+using Unity;
 using UpdatePrism.ApplicationServices;
 using UpdatePrism.ApplicationServices.Interfaces;
 using Xamarin.Forms;
@@ -19,16 +21,16 @@ namespace UpdatePrism
             MainPage = new NavigationPage(new MainPage());
         }
 
-        protected override void RegisterTypes()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             //Register Types
-            Container.RegisterType(typeof(ICurrentDateService), typeof(CurrentDateService));
+            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
 
             //Register Pages
-            Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.GetContainer().RegisterType(typeof(ICurrentDateService), typeof(CurrentDateService));
 
             //Set Container to Unity Container for use out of App class
-            _unityContainer = Container;
+            _unityContainer = containerRegistry.GetContainer() as UnityContainer;
         }
     }
 }
